@@ -55,7 +55,18 @@ export interface Booking {
   updatedAt: string;
 }
 
-export interface Commission {
+export interface Review {
+  id: string;
+  listingId: string;
+  bookingId: string;            // One review per booking — enforced here and in rules
+  guestId: string;
+  guestName: string;            // Denormalized
+  rating: number;               // 1 to 5 — integers only
+  comment: string;
+  createdAt: string;
+}
+
+export interface CommissionConfig {
   percentage: number;          // e.g. 10 means 10%
   updatedAt: string;
   updatedBy: string;           // admin uid
