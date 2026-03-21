@@ -1,4 +1,4 @@
-// /lib/firestore/bookings.ts
+
 
 import {
   doc,

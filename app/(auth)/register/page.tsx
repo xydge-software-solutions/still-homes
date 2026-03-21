@@ -201,7 +201,7 @@ export default function RegisterPage() {
         mode
       );
 
-      router.push(mode === "agent" ? "/agent/dashboard" : "/listings");
+      router.push(mode === "agent" ? "/(agent)/dashboard" : "/listings");
     } catch (err) {
       const code = (err as { code?: string })?.code;
       if (code === "auth/email-already-in-use") {
