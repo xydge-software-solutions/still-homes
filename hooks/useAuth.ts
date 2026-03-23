@@ -31,7 +31,8 @@ export function useAuth() {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, async (user) => {
             if(!user){
-                setAuthState({ user: null, profile: null, role: null, loading: false})
+                setAuthState({ user: null, profile: null, role: null, loading: false});
+                return;
             }
 
             try {
