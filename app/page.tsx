@@ -170,6 +170,7 @@ export default function LandingPage() {
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [checkIn, setCheckIn] = useState<Date | null>(null);
   const [checkOut, setCheckOut] = useState<Date | null>(null);
+  const [guests, setGuests] = useState(1);
   const [location, setLocation] = useState("");
   const datePickerRef = useRef<HTMLDivElement>(null);
   const [activeCity, setActiveCity] = useState("Lagos");
@@ -326,6 +327,25 @@ export default function LandingPage() {
                   <p className={`font-medium ${smartDateDisplay() ? 'text-gray-900' : 'text-gray-400'}`}>
                     {smartDateDisplay() || "Add dates"}
                   </p>
+                </div>
+              </div>
+
+              <div className="w-full md:w-40 px-4 py-3 md:py-4 flex items-center gap-3 border-b md:border-b-0 md:border-r border-gray-100">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className="w-5 h-5 text-gray-400">
+                   <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                   <circle cx="9" cy="7" r="4" />
+                   <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                   <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                </svg>
+                <div className="text-left">
+                  <p className="text-xs font-bold text-gray-500 uppercase tracking-widest">Guests</p>
+                  <input 
+                    type="number" 
+                    min="1"
+                    value={guests}
+                    onChange={(e) => setGuests(parseInt(e.target.value) || 1)}
+                    className="w-full text-gray-900 font-medium focus:outline-none bg-transparent appearance-none m-0"
+                  />
                 </div>
               </div>
 
