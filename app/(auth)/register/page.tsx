@@ -201,7 +201,7 @@ export default function RegisterPage() {
         mode
       );
 
-      router.push(mode === "agent" ? "/(agent)/dashboard" : "/listings");
+      router.push(mode === "agent" ? "/dashboard" : "/stays");
     } catch (err) {
       const code = (err as { code?: string })?.code;
       if (code === "auth/email-already-in-use") {
@@ -238,9 +238,9 @@ export default function RegisterPage() {
         if (profile.role === "admin") {
           router.push("/admin/dashboard");
         } else if (profile.role === "agent") {
-          router.push("/agent/dashboard");
+          router.push("/dashboard");
         } else {
-          router.push("/listings");
+          router.push("/stays");
         }
         return;
       }
@@ -289,7 +289,7 @@ export default function RegisterPage() {
       );
 
       router.push(
-        googleRole === "agent" ? "/agent/dashboard" : "/listings"
+        googleRole === "agent" ? "/dashboard" : "/stays"
       );
     } catch (err) {
       setError("Failed to complete registration. Please try again.");

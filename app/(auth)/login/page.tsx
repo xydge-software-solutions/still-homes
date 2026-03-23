@@ -71,12 +71,12 @@ export default function LoginPage() {
       router.push("/admin/dashboard");
     } else if (role === "agent") {
       if (profile?.agentStatus === "suspended") {
-        router.push("/agent/suspended");
+        router.push("/suspended");
       } else {
-        router.push("/agent/dashboard");
+        router.push("/dashboard");
       }
     } else {
-      router.push("/listings");
+      router.push("/stays");
     }
   };
 

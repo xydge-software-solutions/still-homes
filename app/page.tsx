@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
+import { LISTINGS } from "@/lib/data";
 
 // Luxury Apartment Images for Slideshow
 const HERO_IMAGES = [
@@ -121,35 +122,9 @@ function Calendar({
   );
 }
 
-const FEATURED_LISTINGS = [
-  // Lagos Listings
-  { id: 1, city: "Lagos", title: "Luxury Ocean View", location: "Victoria Island, Lagos", price: 150000, rating: 4.9, image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=800&auto=format&fit=crop" },
-  { id: 2, city: "Lagos", title: "Modern Duplex", location: "Lekki Phase 1, Lagos", price: 120000, rating: 4.8, image: "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?q=80&w=800&auto=format&fit=crop" },
-  { id: 3, city: "Lagos", title: "Cozy Studio", location: "Ikoyi, Lagos", price: 85000, rating: 4.7, image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=800&auto=format&fit=crop" },
-  { id: 4, city: "Lagos", title: "The Palms Villa", location: "Ajah, Lagos", price: 95000, rating: 4.6, image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop" },
-  { id: 5, city: "Lagos", title: "Skyline Apartment", location: "Eko Atlantic, Lagos", price: 200000, rating: 5.0, image: "https://images.unsplash.com/photo-1613545325278-f24b0cae1224?q=80&w=800&auto=format&fit=crop" },
-  { id: 6, city: "Lagos", title: "Minimalist Haven", location: "Yaba, Lagos", price: 60000, rating: 4.5, image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=800&auto=format&fit=crop" },
-
-  // Abuja Listings
-  { id: 7, city: "Abuja", title: "Presidential Suite", location: "Maitama, Abuja", price: 250000, rating: 5.0, image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop" },
-  { id: 9, city: "Abuja", title: "Family Home", location: "Wuse II, Abuja", price: 90000, rating: 4.6, image: "https://images.unsplash.com/photo-1600596542815-e32c2159f8d5?q=80&w=800&auto=format&fit=crop" },
-  { id: 10, city: "Abuja", title: "Hilltop Villa", location: "Asokoro, Abuja", price: 300000, rating: 4.9, image: "https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?q=80&w=800&auto=format&fit=crop" },
-  { id: 11, city: "Abuja", title: "Urban Loft", location: "Gwarinpa, Abuja", price: 70000, rating: 4.4, image: "https://images.unsplash.com/photo-1484154218962-a1c002085d2f?q=80&w=800&auto=format&fit=crop" },
-  { id: 12, city: "Abuja", title: "Green Estate", location: "Jabi, Abuja", price: 110000, rating: 4.7, image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=800&auto=format&fit=crop" },
-  { id: 13, city: "Abuja", title: "Diplomatic Residence", location: "Central Area, Abuja", price: 180000, rating: 4.8, image: "https://images.unsplash.com/photo-1560185007-cde436f6a4d0?q=80&w=800&auto=format&fit=crop" },
-
-  // Port Harcourt Listings
-  { id: 14, city: "Port Harcourt", title: "Garden Estate", location: "GRA, Port Harcourt", price: 75000, rating: 4.5, image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=800&auto=format&fit=crop" },
-  { id: 15, city: "Port Harcourt", title: "Oil City Suites", location: "Old GRA, PH", price: 95000, rating: 4.6, image: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=800&auto=format&fit=crop" },
-  { id: 16, city: "Port Harcourt", title: "Executive Flat", location: "Peter Odili Rd, PH", price: 65000, rating: 4.3, image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?q=80&w=800&auto=format&fit=crop" },
-  { id: 17, city: "Port Harcourt", title: "Riverside Mansion", location: "Eagle Island, PH", price: 130000, rating: 4.7, image: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=800&auto=format&fit=crop" },
-  { id: 18, city: "Port Harcourt", title: "Cozy Bungalow", location: "Rumuola, PH", price: 50000, rating: 4.2, image: "https://images.unsplash.com/photo-1510627489930-0c1b0dc58e85?q=80&w=800&auto=format&fit=crop" },
-  { id: 19, city: "Port Harcourt", title: "Modern Studio", location: "Ada George, PH", price: 45000, rating: 4.1, image: "https://images.unsplash.com/photo-1536376072261-38c75010e6c9?q=80&w=800&auto=format&fit=crop" },
-];
-
-function FeaturedListingCard({ listing }: { listing: typeof FEATURED_LISTINGS[0] }) {
+function FeaturedListingCard({ listing }: { listing: typeof LISTINGS[0] }) {
   return (
-    <div className="min-w-[300px] w-[300px] md:min-w-[350px] md:w-[350px] bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group snap-start">
+    <Link href={`/stays/${listing.id}`} className="min-w-[300px] w-[300px] md:min-w-[350px] md:w-[350px] bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group snap-start block">
       <div className="relative h-64 overflow-hidden">
         <div className="absolute top-3 right-3 z-10 p-2 bg-white/20 backdrop-blur-md rounded-full text-white hover:bg-white hover:text-red-500 transition-colors cursor-pointer">
           <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
@@ -183,7 +158,7 @@ function FeaturedListingCard({ listing }: { listing: typeof FEATURED_LISTINGS[0]
           </button>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
 
@@ -454,7 +429,7 @@ export default function LandingPage() {
             ref={scrollContainerRef}
             className="flex overflow-x-auto gap-6 pb-8 snap-x snap-mandatory scrollbar-hide -mx-6 px-6 md:mx-0 md:px-0"
           >
-            {FEATURED_LISTINGS
+            {LISTINGS
               .filter(l => l.city === activeCity)
               .map((listing) => (
                 <FeaturedListingCard key={listing.id} listing={listing} />
