@@ -36,7 +36,3 @@
     "functions"
   ]
 }
-    "**/*.mts"
-  ],
-  "exclude": ["node_modules"]
-}
